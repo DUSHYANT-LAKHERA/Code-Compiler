@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 
-const PREFIX = 'codepen-clone-'
+const PREFIX = 'code-Compiler-'
 
 export default function useLocalStorage(key, initialValue) {
+
   const prefixedKey = PREFIX + key
 
   const [value, setValue] = useState(() => {
+
     const jsonValue = localStorage.getItem(prefixedKey)
+
     if (jsonValue != null) return JSON.parse(jsonValue)
 
     if (typeof initialValue === 'function') {
@@ -18,6 +21,7 @@ export default function useLocalStorage(key, initialValue) {
 
   useEffect(() => {
     localStorage.setItem(prefixedKey, JSON.stringify(value))
+
   }, [prefixedKey, value])
 
   return [value, setValue]
